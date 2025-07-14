@@ -1,0 +1,30 @@
+<div class="top-bar">
+  <mat-toolbar color="primary">
+    <a routerLink="/" class="logo">
+  <img src="assets/logo.png"  class="logo-img" />
+  <span class="logo-text">FastX</span>
+</a>
+
+
+    <span class="spacer"></span>
+
+    <!-- User Nav -->
+    <nav *ngIf="role === 'User'">
+      <a mat-button routerLink="/user/search">Search</a>
+      <a mat-button routerLink="/user/bookings">My Bookings</a>
+      <a mat-button routerLink="/profile">Profile</a>
+      <a mat-button (click)="logout()">Logout</a>
+    </nav>
+
+    <!-- Operator Nav -->
+    <nav *ngIf="role === 'Operator'">
+      <a mat-button routerLink="/operator/dashboard">Dashboard</a>
+      <a mat-button routerLink="/operator/manage-bus">Manage Buses</a>
+      <a mat-button routerLink="/operator/amenities">Amenities</a>
+      <a mat-button routerLink="/operator/bookings">Bookings</a>
+      <a mat-button (click)="logout()">Logout</a>
+    </nav>
+  </mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>

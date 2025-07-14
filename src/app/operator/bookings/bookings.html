@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator Bookings</title>
+    <link rel="stylesheet" href="./bookings.scss">
+</head>
+<body>
+    <div class="bookings-container">
+        <!-- Header Section -->
+        <div class="bookings-header">
+            <h2>
+                🎫 Recent Bookings
+                <span class="booking-count">{{ bookings.length }} total</span>
+            </h2>
+            <button class="refresh-button" (click)="refreshData()">
+                🔄 Refresh
+            </button>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="loading" class="loading-container">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- No Bookings State -->
+        <div *ngIf="!loading && bookings.length === 0" class="no-bookings">
+            <div class="no-bookings-icon">🎫</div>
+            <h3>No bookings found</h3>
+            <p>You don't have any bookings yet.</p>
+        </div>
+
+        <!-- Bookings Table -->
+        <div *ngIf="!loading && bookings.length > 0" class="bookings-table">
+            <!-- Table Header -->
+            <div class="table-header">
+                <div class="header-cell">Booking ID</div>
+                <div class="header-cell">Customer</div>
+                <div class="header-cell">Bus</div>
+                <div class="header-cell">Seats</div>
+                <div class="header-cell">Date</div>
+                <div class="header-cell">Amount</div>
+                <div class="header-cell">Status</div>
+            </div>
+
+            <!-- Booking Rows -->
+            <div class="booking-row" 
+                 *ngFor="let booking of bookings; trackBy: trackByBookingId">
+                
+                <!-- Booking ID -->
+                <div class="booking-id">
+                    #{{ booking.id }}
+                </div>
+
+                <!-- Customer Info -->
+                <div class="customer-info">
+                    <div class="customer-name">
+                        {{ booking.user?.fullName || 'N/A' }}
+                    </div>
+                    <div class="customer-email">
+                        {{ booking.user?.email || 'N/A' }}
+                    </div>
+                </div>
+
+                <!-- Bus Info -->
+                <div class="bus-info">
+                    <div class="bus-name">
+                        {{ booking.bus?.busName || 'N/A' }}
+                    </div>
+                    <div class="bus-number">
+                        {{ booking.bus?.busNumber || 'N/A' }}
+                    </div>
+                </div>
+
+                <!-- Seat Info -->
+                <div class="seat-info">
+                    <div class="seat-numbers">
+                        {{ getSeatNumbersDisplay(booking) }}
+                    </div>
+                    <div class="seat-count">
+                        {{ getSeatCount(booking) }} seat(s)
+                    </div>
+                </div>
+
+                <!-- Booking Date -->
+                <div class="booking-date">
+                    {{ booking.bookingDate | date: 'mediumDate' }}
+                </div>
+
+                <!-- Amount -->
+                <div class="booking-amount">
+                    ₹{{ booking.totalAmount }}
+                </div>
+
+                <!-- Status -->
+                <div class="booking-status" 
+                     [class]="getStatusClass(booking.status)">
+                    {{ booking.status }}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

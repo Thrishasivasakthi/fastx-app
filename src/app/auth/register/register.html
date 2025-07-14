@@ -1,0 +1,24 @@
+<div class="register-container">
+  <h2>User Registration</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label>Full Name</label>
+    <input type="text" formControlName="fullName" placeholder="Your name" />
+
+    <label>Email</label>
+    <input type="email" formControlName="email" placeholder="Your email" />
+
+    <label>Password</label>
+    <input type="password" formControlName="passwordHash" placeholder="Choose a password" />
+
+    <label>Role</label>
+    <select formControlName="role">
+      <option value="User">User</option>
+      <option value="Operator">Operator</option>
+    </select>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+</div>

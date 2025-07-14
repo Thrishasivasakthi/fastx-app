@@ -1,0 +1,16 @@
+<div class="bus-list">
+  <div *ngFor="let bus of buses" class="bus-card">
+    <h3>{{ bus.busName }}</h3>
+    
+    <div class="amenity-list">
+      <label *ngFor="let amenity of allAmenities" class="amenity-item">
+        <input type="checkbox"
+               [checked]="isAmenitySelected(bus, amenity.id)"
+               (change)="toggleAmenity(bus, amenity.id)" />
+        {{ amenity.name }}
+      </label>
+    </div>
+    
+    <button (click)="saveAmenities(bus)" class="save-btn">Save</button>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="search-container">
+  <h2>🚌 Search Premium Buses</h2>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <mat-form-field appearance="fill">
+      <mat-label>Origin</mat-label>
+      <input matInput formControlName="origin" placeholder="From" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Destination</mat-label>
+      <input matInput formControlName="destination" placeholder="To" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input matInput type="date" formControlName="travelDate" />
+    </mat-form-field>
+
+    <div class="search-button-container">
+      <button mat-raised-button color="primary" type="submit">
+        🔍 Search Buses
+      </button>
+    </div>
+  </form>
+
+  <div class="results" *ngIf="buses.length > 0">
+    <h3>Available Buses</h3>
+
+    <div *ngFor="let bus of buses" class="bus-card">
+      <div class="bus-header">
+        <div class="bus-name">
+          {{ bus.busName }}
+          <span class="bus-type">({{ bus.busType }})</span>
+        </div>
+        <div class="rating">⭐ 4.7</div>
+      </div>
+
+      <div class="bus-info">
+        <div class="route">{{ bus.origin }} → {{ bus.destination }}</div>
+
+        <div class="bus-meta">
+          <div class="left">
+            <span>🕐 Departure: {{ bus.departureTime | date:'shortTime' }}</span>
+            <span>💺 Seats: {{ bus.totalSeats }}</span>
+          </div>
+          <div class="right">
+            <span>🕘 Arrival: {{ bus.arrivalTime | date:'shortTime' }}</span>
+            <span>💰 Fare: ₹{{ bus.fare }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bus-footer">
+        <button (click)="viewSeats(bus.id)">View Seats</button>
+      </div>
+    </div>
+  </div>
+</div>

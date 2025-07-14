@@ -1,0 +1,150 @@
+<!-- bookings.component.html -->
+<div class="bookings-container">
+  <!-- Header -->
+  <div class="page-header">
+    <h1 class="page-title">
+      <span class="icon">📋</span>
+      My Bookings
+    </h1>
+    <button class="refresh-btn" (click)="refreshBookings()" [disabled]="loading">
+      <span class="icon">🔄</span>
+      Refresh
+    </button>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">{{ bookingStats.total }}</div>
+      <div class="stat-label">Total Bookings</div>
+    </div>
+    <div class="stat-card active">
+      <div class="stat-number">{{ bookingStats.active }}</div>
+      <div class="stat-label">Active Bookings</div>
+    </div>
+    <div class="stat-card cancelled">
+      <div class="stat-number">{{ bookingStats.cancelled }}</div>
+      <div class="stat-label">Cancelled</div>
+    </div>
+    <div class="stat-card amount">
+      <div class="stat-number">₹{{ bookingStats.totalAmount }}</div>
+      <div class="stat-label">Total Amount</div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <div class="filter-group">
+      <label for="statusFilter">Filter by Status:</label>
+      <select 
+        id="statusFilter" 
+        class="filter-select" 
+        [value]="selectedStatus" 
+        (change)="onStatusFilterChange($event)">
+        <option *ngFor="let option of statusOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+    <div class="results-count">
+      Showing {{ filteredBookings.length }} of {{ bookings.length }} bookings
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading your bookings...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-state">
+    <div class="error-icon">⚠️</div>
+    <h3>Oops! Something went wrong</h3>
+    <p>{{ error }}</p>
+    <button class="retry-btn" (click)="refreshBookings()">Try Again</button>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && filteredBookings.length === 0" class="empty-state">
+    <div class="empty-icon">🎫</div>
+    <h3>No bookings found</h3>
+    <p *ngIf="selectedStatus === 'all'">You haven't made any bookings yet.</p>
+    <p *ngIf="selectedStatus !== 'all'">No {{ selectedStatus.toLowerCase() }} bookings found.</p>
+  </div>
+
+  <!-- Bookings List -->
+  <div *ngIf="!loading && !error && filteredBookings.length > 0" class="bookings-list">
+    <div *ngFor="let booking of filteredBookings; trackBy: trackByBookingId" 
+         class="booking-card" 
+         [class.cancelled]="booking.status === 'Cancelled'">
+      
+      <!-- Booking Header -->
+      <div class="booking-header">
+        <div class="bus-info">
+          <h3 class="bus-name">{{ booking.busName }}</h3>
+          <div class="bus-details">
+            <span class="bus-number">{{ booking.busNumber }}</span>
+            <span class="bus-type">{{ booking.busType }}</span>
+          </div>
+        </div>
+        <div class="booking-status">
+          <span class="status-badge" [class]="getStatusClass(booking.status)">
+            {{ booking.status }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Route Information -->
+      <div class="route-info">
+        <div class="route-section">
+          <div class="location">
+            <span class="location-name">{{ booking.origin }}</span>
+            <span class="time">{{ formatTime(booking.departure) }}</span>
+          </div>
+          <div class="route-arrow">→</div>
+          <div class="location">
+            <span class="location-name">{{ booking.destination }}</span>
+            <span class="time">{{ formatTime(booking.arrival) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Details -->
+      <div class="booking-details">
+        <div class="detail-row">
+          <div class="detail-item">
+            <span class="label">Seats:</span>
+            <span class="value">
+              <span *ngFor="let seat of booking.seats; let i = index" class="seat-number">
+                {{ seat }}<span *ngIf="i < booking.seats.length - 1">, </span>
+              </span>
+            </span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Amount:</span>
+            <span class="value amount">₹{{ booking.fare }}</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-item">
+            <span class="label">Booking ID:</span>
+            <span class="value">#{{ booking.id }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Booked on:</span>
+            <span class="value">{{ formatDate(booking.bookingDate) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="booking-actions" *ngIf="booking.status === 'Booked'">
+        <button class="cancel-btn" (click)="cancelBooking(booking.id)" [disabled]="loading">
+          <span class="icon"></span>
+          Cancel Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

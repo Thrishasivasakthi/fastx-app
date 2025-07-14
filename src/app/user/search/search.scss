@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.search-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  font-family: 'Poppins', sans-serif;
+  color: #f8fafc;
+}
+
+.search-container h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #f59e0b;
+}
+
+/* Stack inputs vertically */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+
+  mat-form-field {
+    width: 100%;
+    max-width: 400px;
+    background-color: #0f172a;
+    border-radius: 8px;
+  }
+
+  button {
+    background: linear-gradient(to right, #f59e0b, #f97316);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.results h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #e2e8f0;
+}
+
+.bus-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-left: 5px solid #f59e0b;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.bus-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* 🟠 Header alignment with rating */
+.bus-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  .bus-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f59e0b;
+  }
+
+  .rating {
+    font-size: 16px;
+    color: #facc15;
+    font-weight: bold;
+  }
+}
+
+.route {
+  font-size: 16px;
+  font-weight: 500;
+  color: #cbd5e1;
+  margin-top: 8px;
+}
+
+/* Bus Meta Section */
+.bus-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+
+  .left, .right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      color: #cbd5e1;
+    }
+  }
+}
+
+/* View Seats button in center */
+.bus-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    background: linear-gradient(to right, #10b981, #059669);
+    color: white;
+    padding: 10px 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.3s ease;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+  }
+}

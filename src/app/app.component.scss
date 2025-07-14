@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.top-bar {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  
+  .logo .brand {
+    color: #f59e0b !important;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  nav a {
+    color: #f59e0b !important;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-transform: capitalize;
+    
+    &:hover {
+      color: #facc15 !important;
+      text-decoration: underline;
+    }
+  }
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+
+  img {
+    height: 36px; // or 40px depending on design
+    width: auto;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f59e0b; // match your orange
+    font-family: 'Poppins', sans-serif;
+  }
+}

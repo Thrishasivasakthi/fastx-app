@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.profile-container {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  font-family: 'Poppins', sans-serif;
+  color: #f8fafc;
+  text-align: center;
+}
+
+h2 {
+  color: #f59e0b;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  mat-form-field {
+    width: 100%;
+
+    input {
+      color: #f8fafc;
+    }
+  }
+
+  button {
+    background: linear-gradient(to right, #f59e0b, #f97316);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+  }
+}
+
+.status {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #34d399;
+}
+.profile-details {
+  text-align: left;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  line-height: 1.8;
+
+  p {
+    margin: 0.5rem 0;
+    color: #f1f5f9;
+  }
+
+  strong {
+    color: #f59e0b;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}

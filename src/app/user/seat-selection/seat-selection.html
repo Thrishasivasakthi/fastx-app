@@ -1,0 +1,114 @@
+<div class="seat-page">
+  <!-- Header Section -->
+  <header class="seat-header">
+    <button class="back-btn" routerLink="/user/search">←</button>
+    <h2>Select Your Seats</h2>
+    <div class="bus-name">Express Deluxe</div>
+  </header>
+
+  <!-- Trip Details -->
+  <section class="trip-details">
+    <div>🕐 8:00 AM - 12:00 PM</div>
+    <div>⭐ 4.8 Rating</div>
+  </section>
+
+  <!-- Legend -->
+  <section class="seat-legend">
+    <div><span class="seat available"></span> Available</div>
+    <div><span class="seat selected"></span> Selected</div>
+    <div><span class="seat occupied"></span> Occupied</div>
+  </section>
+
+  <!-- Seat Layout -->
+  <section class="bus-layout">
+    <div class="driver">🛞 Driver</div>
+
+    <div class="seat-grid">
+  <div *ngFor="let row of seatMap" class="seat-row">
+    
+    <!-- Left Column: A1, A2 -->
+    <div class="side left">
+      <div
+        class="seat"
+        *ngIf="row.A1"
+        [class.available]="!row.A1.isBooked && !isSelected(row.A1.seatNumber)"
+        [class.selected]="isSelected(row.A1.seatNumber)"
+        [class.occupied]="row.A1.isBooked"
+        [class.disabled]="row.A1.isBooked"
+        (click)="toggleSeat(row.A1)"
+        [title]="'Seat ' + row.A1.seatNumber"
+      >
+        {{ row.A1.seatNumber }}
+      </div>
+      <div
+        class="seat"
+        *ngIf="row.A2"
+        [class.available]="!row.A2.isBooked && !isSelected(row.A2.seatNumber)"
+        [class.selected]="isSelected(row.A2.seatNumber)"
+        [class.occupied]="row.A2.isBooked"
+        [class.disabled]="row.A2.isBooked"
+        (click)="toggleSeat(row.A2)"
+        [title]="'Seat ' + row.A2.seatNumber"
+      >
+        {{ row.A2.seatNumber }}
+      </div>
+    </div>
+
+    <!-- Aisle -->
+    <div class="aisle"></div>
+
+    <!-- Right Column: B1, B2 -->
+    <div class="side right">
+      <div
+        class="seat"
+        *ngIf="row.B1"
+        [class.available]="!row.B1.isBooked && !isSelected(row.B1.seatNumber)"
+        [class.selected]="isSelected(row.B1.seatNumber)"
+        [class.occupied]="row.B1.isBooked"
+        [class.disabled]="row.B1.isBooked"
+        (click)="toggleSeat(row.B1)"
+        [title]="'Seat ' + row.B1.seatNumber"
+      >
+        {{ row.B1.seatNumber }}
+      </div>
+      <div
+        class="seat"
+        *ngIf="row.B2"
+        [class.available]="!row.B2.isBooked && !isSelected(row.B2.seatNumber)"
+        [class.selected]="isSelected(row.B2.seatNumber)"
+        [class.occupied]="row.B2.isBooked"
+        [class.disabled]="row.B2.isBooked"
+        (click)="toggleSeat(row.B2)"
+        [title]="'Seat ' + row.B2.seatNumber"
+      >
+        {{ row.B2.seatNumber }}
+      </div>
+    </div>
+  </div>
+</div>
+
+  </section>
+
+  <!-- Bottom Summary -->
+  <div class="bottom-summary" *ngIf="selectedSeats.length > 0">
+    <div>
+      <strong>Selected:</strong> {{ selectedSeats.join(', ') }}
+    </div>
+    <div>
+      <strong>Total:</strong> ₹{{ totalPrice }}
+    </div>
+    <button (click)="proceedToPayment()">Continue to Payment</button>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading" *ngIf="seats.length === 0 && seatMap.length === 0">
+    <div class="spinner"></div>
+    <p>Loading seats...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="seats.length > 0 && seatMap.length === 0">
+    <p>No seats available for this bus.</p>
+    <button class="back-btn" routerLink="/user/search">Go Back</button>
+  </div>
+</div>

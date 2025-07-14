@@ -1,1 +1,118 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.top-bar {
+  background-color: #0f172a !important;
+}*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Enhanced Navigation Bar Only */
+.top-bar {
+  background-color: #0f172a !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  border-bottom: 2px solid rgba(245, 158, 11, 0.2) !important;
+}
+
+.top-bar mat-toolbar {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  padding: 0 2rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  height: 70px !important;
+}
+
+.top-bar .logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 24px !important;
+  
+  .brand {
+    color: #f59e0b !important;
+    font-weight: 700 !important;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .brand:hover {
+    color: #facc15 !important;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3) !important;
+  }
+}
+
+.top-bar nav {
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+  
+  a.mat-mdc-button {
+    color: #f59e0b !important;
+    font-weight: 600 !important;
+    font-family: 'Poppins', sans-serif !important;
+    text-transform: capitalize !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    
+    &:hover {
+      color: #facc15 !important;
+      background: rgba(245, 158, 11, 0.1) !important;
+      transform: translateY(-2px) !important;
+    }
+    
+    &.active {
+      color: #facc15 !important;
+      background: rgba(245, 158, 11, 0.15) !important;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 2px;
+        background: #f59e0b;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+.spacer {
+  flex: 1 1 auto !important;
+}
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.top-bar {
+  background-color: #0f172a !important;
+  color: #f8fafc;
+
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    .brand {
+      color: #f59e0b !important;
+    }
+  }
+
+  nav a.mat-button {
+    color: #f59e0b !important;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  nav a.mat-button:hover {
+    color: #facc15 !important;
+    background: transparent !important;
+    text-decoration: underline;
+  }
+}*/

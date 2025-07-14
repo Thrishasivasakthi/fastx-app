@@ -1,0 +1,42 @@
+<div class="profile-container">
+  <ng-container *ngIf="!isEditing; else editForm">
+    <h2>👤 Your Profile</h2>
+
+    <div class="profile-details">
+      <p><strong>Name:</strong> {{ userDetails.fullName }}</p>
+      <p><strong>Email:</strong> {{ userDetails.email }}</p>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="toggleEdit()">✏️ Edit Profile</button>
+  </ng-container>
+
+  <ng-template #editForm>
+    <h2>Edit Profile</h2>
+
+    <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+      <mat-form-field appearance="fill">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="fullName" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="passwordHash" type="password" required />
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading || profileForm.invalid">
+          {{ loading ? 'Updating...' : 'Update Profile' }}
+        </button>
+        <button mat-button color="warn" type="button" (click)="toggleEdit()">Cancel</button>
+      </div>
+    </form>
+
+    <p class="status" *ngIf="message">{{ message }}</p>
+  </ng-template>
+</div>
